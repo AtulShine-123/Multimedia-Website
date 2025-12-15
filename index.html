@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTIMEDIA I // FALL FINAL</title>
+    <!-- LINK TO EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NOISE OVERLAY -->
+<div class="noise-overlay"></div>
+
+<!-- FLUID BACKGROUND CANVAS -->
+<canvas id="fluid-canvas"></canvas>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-circle"></div>
+
+<!-- LIGHTBOX OVERLAY (Hidden by default) -->
+<div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-close hover-target" id="lightbox-close">X</div>
+    <img src="" alt="Expanded Art" class="lightbox-image" id="lightbox-img">
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">ATUL SHINE</div>
+    <div class="nav-items">
+        <a href="#home" class="nav-link active hover-target">Home</a>
+        <a href="#about" class="nav-link hover-target">Bio</a>
+        <a href="#portfolio" class="nav-link hover-target">Multimedia</a>
+        <a href="#video" class="nav-link hover-target">Critique</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div class="reveal-text">
+        <h1 class="glitch-target" data-text="CREATIVE VISION">CREATIVE VISION</h1>
+    </div>
+    <div class="hero-sub reveal-delay">
+        <span>FALL FINAL 2025</span>
+        <div class="separator"></div>
+        <span>MULTIMEDIA I</span>
+    </div>
+    <div class="scroll-hint">Scroll to Initialize</div>
+</section>
+
+<!-- BIO SECTION -->
+<section id="about">
+    <div class="section-header reveal-up">
+        <span>01 // The Artist</span>
+        <h2>About Me</h2>
+    </div>
+
+    <div class="bio-container">
+        <div class="profile-frame hover-target reveal-up">
+            <!-- PHOTO REPLACEMENT AREA -->
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Student Portrait" class="profile-img">
+        </div>
+
+        <div class="bio-card reveal-up" style="transition-delay: 0.2s">
+            <h3 style="margin-top:0; color: var(--primary);">Student Biography</h3>
+            <p>
+                I am a digital creator based at EVHS, currently exploring the intersection of technology and visual arts in Multimedia I. My work focuses on high-contrast aesthetics and experimental design structures.
+            </p>
+            <p>
+                Outside of the digital canvas, I am an observer of modern architecture and urban decay, themes which frequently find their way into my color palettes. This portfolio serves as the definitive record of my growth during the Fall 2025 semester.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section id="portfolio">
+    <div class="section-header reveal-up">
+        <span>02 // The Works</span>
+        <h2>Multimedia Gallery</h2>
+        <p style="max-width: 600px; margin-top: 1rem; color: var(--text-dim);">
+            Multimedia is the amalgamation of diverse content forms. Through this semester, I have learned to manipulate raster and vector graphics to communicate complex visual narratives. In Spring, I aim to integrate motion graphics and 3D modeling.
+        </p>
+    </div>
+
+    <div class="gallery-grid">
+
+        <!-- ARTWORK 1 -->
+        <div class="art-card hover-target reveal-up" onclick="openLightbox(this)">
+            <div class="card-inner">
+                <!-- IMAGE REPLACEMENT: Change the URL below to 'art1.jpg' etc. -->
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <span class="medium-tag">Photoshop</span>
+                    <h3>Neural Network</h3>
+                    <p>Chosen for its complexity. Exploring digital layering.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARTWORK 2 -->
+        <div class="art-card hover-target reveal-up" style="transition-delay: 0.1s" onclick="openLightbox(this)">
+            <div class="card-inner">
+                <!-- IMAGE REPLACEMENT: Change the URL below -->
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <span class="medium-tag">Illustrator</span>
+                    <h3>Cybernetic Flora</h3>
+                    <p>A vector study on organic vs synthetic shapes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARTWORK 3 -->
+        <div class="art-card hover-target reveal-up" style="transition-delay: 0.2s" onclick="openLightbox(this)">
+            <div class="card-inner">
+                <!-- IMAGE REPLACEMENT: Change the URL below -->
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="card-content">
+                    <span class="medium-tag">Photography</span>
+                    <h3>Void Gaze</h3>
+                    <p>High contrast photography focusing on isolation.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CRITIQUE SECTION -->
+<section id="video">
+    <div class="section-header reveal-up">
+        <span>03 // Reflection</span>
+        <h2>Art Critique</h2>
+    </div>
+
+    <div class="critique-layout">
+        <!-- VIDEO EMBED -->
+        <div class="video-shell hover-target reveal-up">
+            <!-- REPLACE YOUTUBE LINK HERE -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1" title="Critique" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- ACCORDION QUESTIONS -->
+        <div class="critique-questions reveal-up" style="transition-delay: 0.2s">
+
+            <div class="accordion-item hover-target">
+                <div class="accordion-header">
+                    01. Why did you choose these pieces?
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-body">
+                    I selected these three specific works because they represent the widest range of techniques I learned this semester. They demonstrate my competency in layer masking, vector pen tool precision, and color grading theory.
+                </div>
+            </div>
+
+            <div class="accordion-item hover-target">
+                <div class="accordion-header">
+                    02. Favorite part of creation?
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-body">
+                    My favorite aspect was the experimental phase of the 'Neural Network' piece. Discovering how blending modes (specifically Difference and Exclusion) interact created unexpected visual textures that I couldn't have planned manually.
+                </div>
+            </div>
+
+            <div class="accordion-item hover-target">
+                <div class="accordion-header">
+                    03. Improvements for next time?
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-body">
+                    If I were to revisit these, I would focus heavily on typography integration. I feel the visual elements are strong, but the text hierarchy within the posters could be more legible and stylistically aligned with the graphic elements.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-glitch">EVHS<br>2025</div>
+    <div class="footer-info">
+        <p>A. Silvestre - Multimedia I</p>
+        <p>Fall Final Project</p>
+        <p>https://sites.google.com/view/asilvestre-artclasses-evhs</p>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT ENGINE -->
+<script>
+    // 1. CUSTOM CURSOR
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorCircle = document.querySelector('.cursor-circle');
+    const hoverTargets = document.querySelectorAll('.hover-target, a');
+
+    window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        // Dot follows instantly
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        // Circle follows with lag
+        cursorCircle.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+    });
+
+    hoverTargets.forEach(target => {
+        target.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+        target.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    });
+
+    // 2. SCROLL REVEAL (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+
+                // Trigger Text Glitch if available
+                const glitchTarget = entry.target.querySelector('.glitch-target');
+                if(glitchTarget) scrambleText(glitchTarget);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-up, .hero').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(50px)';
+        el.style.transition = 'all 1s cubic-bezier(0.2, 1, 0.3, 1)';
+        observer.observe(el);
+    });
+
+    // 3. TEXT SCRAMBLE EFFECT
+    function scrambleText(element) {
+        const originalText = element.getAttribute('data-text');
+        const chars = '!<>-_\\/[]{}—=+*^?#________';
+        let iteration = 0;
+
+        let interval = setInterval(() => {
+            element.innerText = originalText
+                .split("")
+                .map((letter, index) => {
+                    if(index < iteration) return originalText[index];
+                    return chars[Math.floor(Math.random() * chars.length)]
+                })
+                .join("");
+
+            if(iteration >= originalText.length) clearInterval(interval);
+            iteration += 1/3;
+        }, 30);
+    }
+
+    // 4. ACCORDION LOGIC
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // 5. 3D TILT EFFECT FOR CARDS
+    document.querySelectorAll('.art-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const inner = card.querySelector('.card-inner');
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Calculate rotation (max 15deg)
+            const xRotation = -1 * ((y - rect.height/2) / rect.height * 20);
+            const yRotation = (x - rect.width/2) / rect.width * 20;
+
+            inner.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const inner = card.querySelector('.card-inner');
+            inner.style.transform = 'rotateX(0) rotateY(0)';
+        });
+    });
+
+    // 6. LIGHTBOX FUNCTIONALITY
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    function openLightbox(cardElement) {
+        // Get background image URL from clicked card
+        const bgDiv = cardElement.querySelector('.card-bg');
+        const bgStyle = window.getComputedStyle(bgDiv).backgroundImage;
+
+        // Extract URL (removes 'url("' and '")')
+        const imgUrl = bgStyle.slice(5, -2).replace(/['"]/g, "");
+
+        lightboxImg.src = imgUrl;
+        lightbox.classList.add('active');
+    }
+
+    lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if(e.key === "Escape") lightbox.classList.remove('active');
+    });
+
+    // 7. CANVAS FLUID BACKGROUND (Simplified Simulation)
+    const canvas = document.getElementById('fluid-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    // Resize
+    const resize = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Particles
+    const particles = [];
+    for(let i=0; i<50; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2,
+            size: Math.random() * 200 + 50,
+            color: Math.random() > 0.5 ? '#00ffcc' : '#7000ff'
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'screen'; // Blending mode
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Bounce
+            if(p.x < 0 || p.x > width) p.vx *= -1;
+            if(p.y < 0 || p.y > height) p.vy *= -1;
+
+            // Draw gradient blob
+            const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+            g.addColorStop(0, p.color + '44'); // Hex + Alpha
+            g.addColorStop(1, 'transparent');
+
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+</body>
+</html>
