@@ -1,11 +1,53 @@
 /*
    ==========================================================================
-   1. ROUTER LOGIC (SPA ENGINE)
+   1. MATRIX TEXT SCRAMBLE (HOME TITLE)
+   ==========================================================================
+*/
+function scrambleText(element) {
+    if (!element) return;
+    const finalState = element.getAttribute('data-value');
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/A.SHINE';
+    let iterations = 0;
+
+    clearInterval(element.interval);
+
+    element.interval = setInterval(() => {
+        element.innerText = finalState
+            .split("")
+            .map((letter, index) => {
+                if (index < iterations) {
+                    return finalState[index];
+                }
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("");
+
+        if (iterations >= finalState.length) {
+            clearInterval(element.interval);
+        }
+
+        iterations += 1/3;
+    }, 30);
+}
+
+// Trigger on load
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.getElementById('scramble-title');
+    scrambleText(title);
+
+    // Also init router
+    router.init();
+});
+
+/*
+   ==========================================================================
+   2. ROUTER LOGIC (SPA ENGINE) WITH RED STREAK
    ==========================================================================
 */
 const router = {
     pages: document.querySelectorAll('.page'),
     navItems: document.querySelectorAll('.nav-item'),
+    streak: document.getElementById('warp-streak'),
     currentPage: 0,
     isAnimating: false,
 
@@ -23,9 +65,14 @@ const router = {
         const oldPage = this.pages[this.currentPage];
         const newPage = this.pages[targetIndex];
 
+        // Trigger Red Streak Animation
+        this.streak.classList.remove('active');
+        void this.streak.offsetWidth; // Trigger Reflow
+        this.streak.classList.add('active');
+
         // Update Nav UI
         this.navItems.forEach(item => item.classList.remove('active'));
-        this.navItems[targetIndex].classList.add('active');
+        if(this.navItems[targetIndex]) this.navItems[targetIndex].classList.add('active');
 
         // 1. Fade OUT old page
         oldPage.classList.remove('active');
@@ -42,20 +89,20 @@ const router = {
     }
 };
 
-router.init();
-
 /*
    ==========================================================================
-   2. UI INTERACTIVITY
+   3. UI INTERACTIVITY
    ==========================================================================
 */
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorRing = document.querySelector('.cursor-ring');
 
 window.addEventListener('mousemove', (e) => {
+    // Basic dot move
     cursorDot.style.left = `${e.clientX}px`;
     cursorDot.style.top = `${e.clientY}px`;
 
+    // Smooth follow for ring
     cursorRing.animate({
         left: `${e.clientX}px`,
         top: `${e.clientY}px`
@@ -71,23 +118,16 @@ hoverTargets.forEach(el => {
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
 
-// Lightbox Logic
+// Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 
 function openLightbox(element) {
-    // Check if it's a gallery card or a photo slot
     let url = "";
     const bgDiv = element.querySelector('.card-bg');
-
     if (bgDiv) {
-        // Extract URL from style
         const bgStyle = bgDiv.style.backgroundImage;
-        if(bgStyle) {
-            url = bgStyle.slice(5, -2).replace(/['"]/g, "");
-        } else {
-            return; // No image
-        }
+        if(bgStyle) url = bgStyle.slice(5, -2).replace(/['"]/g, "");
     } else if (element.tagName === 'IMG') {
         url = element.src;
     }
@@ -106,7 +146,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') lightbox.classList.remove('active');
 });
 
-// Accordion (Critique)
+// Accordion
 const logs = document.querySelectorAll('.log-entry');
 logs.forEach(log => {
     log.querySelector('.log-header').addEventListener('click', () => {
@@ -114,15 +154,27 @@ logs.forEach(log => {
     });
 });
 
-// Photography Toggle (Bio Page)
-function togglePhotoGallery() {
-    const gallery = document.getElementById('photo-gallery');
-    gallery.classList.toggle('open');
+// Photography Module Toggle & Auto-Scroll
+const photoTrigger = document.getElementById('photo-trigger');
+const photoGrid = document.getElementById('photo-grid');
+
+if(photoTrigger && photoGrid) {
+    photoTrigger.addEventListener('click', () => {
+        photoTrigger.classList.toggle('active');
+        photoGrid.classList.toggle('expanded');
+
+        // Auto Scroll if opening
+        if (photoGrid.classList.contains('expanded')) {
+            setTimeout(() => {
+                photoGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
+    });
 }
 
 /*
    ==========================================================================
-   3. BACKGROUND PARTICLES
+   4. BACKGROUND PARTICLES (RED/BLACK THEME)
    ==========================================================================
 */
 const canvas = document.getElementById('bg-canvas');
@@ -144,9 +196,11 @@ class Particle {
         this.y = Math.random() * h;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2;
+        this.size = Math.random() * 2.5;
         this.alpha = Math.random() * 0.5;
         this.life = Math.random() * 100;
+        // Color variation: Red or Grey
+        this.color = Math.random() > 0.8 ? '255, 0, 85' : '100, 100, 100';
     }
     update() {
         this.x += this.vx; this.y += this.vy; this.life--;
@@ -155,17 +209,16 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 255, 242, ${this.alpha})`;
+        ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
         ctx.fill();
     }
 }
 
-for (let i = 0; i < 100; i++) particles.push(new Particle());
+for (let i = 0; i < 120; i++) particles.push(new Particle());
 
 function animate() {
     ctx.clearRect(0, 0, w, h);
     ctx.lineWidth = 0.2;
-    ctx.strokeStyle = 'rgba(0, 255, 242, 0.1)';
 
     for (let i = 0; i < particles.length; i++) {
         let p1 = particles[i];
@@ -180,6 +233,7 @@ function animate() {
                 ctx.beginPath();
                 ctx.moveTo(p1.x, p1.y);
                 ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(${p1.color}, 0.1)`;
                 ctx.stroke();
             }
         }

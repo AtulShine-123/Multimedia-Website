@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEM // A. SILVESTRE</title>
+    <title>SYSTEM // A. SHINE</title>
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +15,14 @@
 <body>
 
 <!-- VISUAL FX -->
+<div class="background-pulse"></div> <!-- Dynamic Red/Black Pulse -->
 <div class="scanlines"></div>
 <div class="vignette"></div>
 <div class="noise-layer"></div>
 <canvas id="bg-canvas"></canvas>
+
+<!-- TRANSITION STREAK FX -->
+<div id="warp-streak"></div>
 
 <!-- CUSTOM CURSOR -->
 <div class="cursor-dot"></div>
@@ -49,7 +53,7 @@
     <div class="lightbox-content">
         <img src="" alt="Expanded View" id="lightbox-img">
         <div class="lightbox-caption">
-            <h3>ARTIFACT DETAIL</h3>
+            <h3>VISUAL DATA</h3>
             <p>HIGH RESOLUTION RENDER</p>
         </div>
     </div>
@@ -58,7 +62,7 @@
 <!-- NAVIGATION BAR -->
 <nav class="main-nav">
     <div class="nav-brand hover-trigger" onclick="router.navigate(0)">
-        <span class="brand-glitch" data-text="A.SILVESTRE">A.SILVESTRE</span>
+        <span class="brand-glitch" data-text="A.SHINE">A.SHINE</span>
     </div>
 
     <div class="nav-menu">
@@ -92,7 +96,8 @@
     <section class="page active" id="page-0">
         <div class="content-center">
             <div class="glitch-wrapper">
-                <h1 class="hero-title glitch-text" data-text="CREATIVE_VISION">CREATIVE_VISION</h1>
+                <!-- SCRAMBLE TARGET -->
+                <h1 class="hero-title" id="scramble-title" data-value="CREATIVE_VISION"></h1>
             </div>
 
             <div class="hero-subtitle-container">
@@ -107,13 +112,14 @@
                 <p>> WELCOME USER.</p>
             </div>
 
-            <button class="cta-btn hover-trigger" onclick="router.navigate(2)">
-                ENTER GALLERY
+            <!-- BUTTON UPDATED: GOES TO BIO (1) -->
+            <button class="cta-btn hover-trigger" onclick="router.navigate(1)">
+                LEARN MORE ABOUT ME
             </button>
         </div>
     </section>
 
-    <!-- PAGE 1: BIO (UPDATED WITH HOBBIES) -->
+    <!-- PAGE 1: BIO & HOBBIES -->
     <section class="page" id="page-1">
         <div class="page-content">
             <div class="section-header">
@@ -122,12 +128,12 @@
                 <div class="section-line"></div>
             </div>
 
-            <!-- ORIGINAL BIO GRID -->
+            <!-- MAIN BIO -->
             <div class="bio-grid">
                 <div class="bio-image-wrapper hover-trigger">
                     <div class="corner-bracket top-left"></div>
                     <div class="corner-bracket bottom-right"></div>
-                    <!-- me.jpg (Flipped in CSS) -->
+                    <!-- NOTE: CSS rotates this 180deg -->
                     <img src="me.jpg" alt="Student Portrait" class="bio-img">
                     <div class="scan-bar"></div>
                 </div>
@@ -138,10 +144,13 @@
                         <h3>OPERATOR BIO</h3>
                     </div>
                     <p class="bio-para">
-                        I am a digital creator based at EVHS, currently exploring the intersection of technology and visual arts in Multimedia I. My work focuses on high-contrast aesthetics and experimental design structures.
+                        I’m a student at EVHS with a strong interest in computer science and engineering, and I plan to pursue CS at the collegiate level. I’m drawn to building things from the ground up, whether that’s systems, projects, or organizations, and I value understanding how things work rather than just using them.
                     </p>
                     <p class="bio-para">
-                        Outside of the digital canvas, I am an observer of modern architecture and urban decay, themes which frequently find their way into my color palettes. This portfolio serves as the definitive record of my growth during the Fall 2025 semester.
+                        I’m especially interested in problem-solving through logic, structure, and iteration. I tend to approach challenges methodically, focusing on efficiency, clarity, and long-term improvement. This mindset carries across both my technical work and leadership roles, where I prioritize responsibility, consistency, and follow-through.
+                    </p>
+                    <p class="bio-para">
+                        This site documents my academic and creative work from the Fall 2025 semester, reflecting my growth in technical thinking, project execution, and presentation.
                     </p>
 
                     <div class="stats-grid">
@@ -155,136 +164,106 @@
                         </div>
                         <div class="stat-box">
                             <span class="stat-label">ROLE</span>
-                            <span class="stat-value">DEV</span>
+                            <span class="stat-value">STUDENT</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- NEW HOBBIES SECTION -->
-            <div class="hobbies-section">
-                <div class="section-header">
-                    <span class="section-num" style="font-size: 3rem; transform: translateY(-10px);">1.5</span>
-                    <h2 class="section-title" style="font-size: 2rem;">DATA_MODULES // HOBBIES</h2>
+            <!-- HOBBIES SECTION -->
+            <div class="hobbies-wrapper">
+                <div class="section-header small">
+                    <h2 class="section-title small">DATA_MODULES // HOBBIES</h2>
                     <div class="section-line"></div>
                 </div>
 
-                <div class="hobby-grid">
-
-                    <!-- BADMINTON -->
-                    <div class="hobby-card">
-                        <div class="hobby-visual">
-                            <img src="Badminton.jpg" alt="Badminton" class="hobby-img">
-                            <div class="hobby-overlay"></div>
-                        </div>
-                        <div class="hobby-content">
-                            <div class="hobby-header">
-                                <span class="tech-tag">SPORT</span>
-                                <h3>BADMINTON</h3>
-                            </div>
-                            <p class="hobby-desc">
-                                Member of the Intermediate–Advanced Bingtang Badminton Team. Despite playing for just over a year, I compete in Junior Regional tournaments, consistently matching the intensity and skill of veteran players through relentless dedication.
-                            </p>
-                        </div>
+                <!-- 1. BADMINTON -->
+                <div class="hobby-card">
+                    <div class="hobby-visual">
+                        <img src="Badminton.jpg" alt="Badminton" class="hobby-img">
                     </div>
-
-                    <!-- TAE KWON DO -->
-                    <div class="hobby-card">
-                        <div class="hobby-visual">
-                            <img src="Teakwondo.jpg" alt="Tae Kwon Do" class="hobby-img">
-                            <div class="hobby-overlay"></div>
-                        </div>
-                        <div class="hobby-content">
-                            <div class="hobby-header">
-                                <span class="tech-tag">MARTIAL ARTS</span>
-                                <h3>TAE KWON DO</h3>
-                            </div>
-                            <p class="hobby-desc">
-                                2nd Dan Black Belt. I have earned 25+ Gold, 5 Silver, and 3 Bronze medals in state-level sparring. I served on the International Demonstration Team in South Korea (Kukkiwon) and later returned to my studio as a coach to mentor the next generation.
-                            </p>
-                        </div>
+                    <div class="hobby-content">
+                        <h3>BADMINTON PROTOCOL</h3>
+                        <p>I am a competitive member of the Intermediate–Advanced Bingtang Badminton Team. Despite only playing for just over a year, I have rapidly developed my skills to match veteran players, participating in Junior Regional tournaments with a focus on aggressive growth and tactical precision.</p>
                     </div>
-
-                    <!-- ROBOTICS -->
-                    <div class="hobby-card">
-                        <div class="hobby-visual">
-                            <!-- CHANGED: Robotics.jpg -->
-                            <img src="Robotics.jpg" alt="Robotics" class="hobby-img">
-                            <div class="hobby-overlay"></div>
-                        </div>
-                        <div class="hobby-content">
-                            <div class="hobby-header">
-                                <span class="tech-tag">ENGINEERING</span>
-                                <h3>ROBOTICS</h3>
-                            </div>
-                            <p class="hobby-desc">
-                                A pursuit of the engineering mindset. I focus on the iterative process of building, experimenting, and problem-solving, applying technical rigor to bring mechanical concepts to life.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- CARS -->
-                    <div class="hobby-card">
-                        <div class="hobby-visual">
-                            <!-- CHANGED: Cars.jpg -->
-                            <img src="Cars.jpg" alt="Cars" class="hobby-img">
-                            <div class="hobby-overlay"></div>
-                        </div>
-                        <div class="hobby-content">
-                            <div class="hobby-header">
-                                <span class="tech-tag">AUTOMOTIVE</span>
-                                <h3>CARS</h3>
-                            </div>
-                            <p class="hobby-desc">
-                                I assisted in modifying a Mk4 Toyota Supra and actively participate in car culture. I was invited to speak at a show in Ohio alongside owners of a rare Mercedes-AMG Black Series (~50 units) and a ZR1 Corvette.
-                            </p>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- PHOTOGRAPHY DROPDOWN SECTION -->
-                <div class="photo-module">
-                    <button class="photo-toggle-btn hover-trigger" onclick="togglePhotoGallery()">
-                        <span class="btn-icon">📸</span>
-                        <span class="btn-text">INITIALIZE PHOTOGRAPHY MODULE</span>
-                        <span class="btn-arrow">▼</span>
-                    </button>
+                <!-- 2. TAE KWON DO -->
+                <div class="hobby-card reverse">
+                    <div class="hobby-visual">
+                        <img src="Teakwondo.jpg" alt="Tae Kwon Do" class="hobby-img">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>TAE KWON DO</h3>
+                        <p>As a 2nd Dan Black Belt, my discipline is evidenced by 25+ Gold, 5 Silver, and 3 Bronze medals. I have sparred at state-level events and performed in South Korea with my studio's International Demonstration Team (organized by Kukkiwon). I now serve as a coach, passing on these values.</p>
+                    </div>
+                </div>
 
-                    <div class="photo-gallery" id="photo-gallery">
-                        <p class="gallery-intro">ARCHIVE // 10 CAPTURED MOMENTS</p>
-                        <div class="photo-grid-10">
-                            <!-- 10 Slots for Photos (Photo1.jpg to Photo10.jpg) -->
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo1.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo2.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo3.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo4.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo5.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo6.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo7.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo8.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo9.jpg');"></div>
-                            </div>
-                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
-                                <div class="card-bg" style="background-image: url('Photo10.jpg');"></div>
-                            </div>
+                <!-- 3. ROBOTICS -->
+                <div class="hobby-card">
+                    <div class="hobby-visual">
+                        <img src="Robotics.jpg" alt="Robotics" class="hobby-img">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>ROBOTICS ENGINEERING</h3>
+                        <p>Robotics provides the framework for my problem-solving mindset. I focus on the engineering lifecycle—building, experimenting, and refining mechanical systems. It is the physical application of the logic I use in coding and design.</p>
+                    </div>
+                </div>
+
+                <!-- 4. CARS -->
+                <div class="hobby-card reverse">
+                    <div class="hobby-visual">
+                        <!-- UPDATED to Car.jpg -->
+                        <img src="Car.jpg" alt="Cars" class="hobby-img">
+                    </div>
+                    <div class="hobby-content">
+                        <h3>AUTOMOTIVE DESIGN</h3>
+                        <p>My passion extends to automotive culture. I assisted in modifying a Mk4 Toyota Supra and regularly attend exhibitions. I had the honor of speaking at an Ohio showcase alongside owners of a rare Mercedes-AMG Black Series (~50 units) and a Chevrolet Corvette ZR1.</p>
+                    </div>
+                </div>
+
+                <!-- 5. PHOTOGRAPHY (EXPANDABLE) -->
+                <div class="photo-module hover-trigger" id="photo-trigger">
+                    <div class="module-header">
+                        <span class="module-icon">📸</span>
+                        <h3>PHOTOGRAPHY ARCHIVE // CLICK TO EXPAND</h3>
+                        <div class="module-arrow">▼</div>
+                    </div>
+                </div>
+
+                <!-- HIDDEN PHOTO GRID -->
+                <div class="photo-grid-container" id="photo-grid">
+                    <div class="photo-grid">
+                        <!-- 10 SLOTS -->
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo1.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo2.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo3.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo4.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo5.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo6.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo7.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo8.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo9.jpg')"></div>
+                        </div>
+                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
+                            <div class="card-bg" style="background-image: url('Photo10.jpg')"></div>
                         </div>
                     </div>
                 </div>
