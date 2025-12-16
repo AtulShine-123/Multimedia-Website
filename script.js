@@ -71,16 +71,31 @@ hoverTargets.forEach(el => {
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
 
-// Lightbox
+// Lightbox Logic
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 
 function openLightbox(element) {
-    const bg = element.querySelector('.card-bg').style.backgroundImage;
-    const url = bg.slice(5, -2).replace(/['"]/g, "");
+    // Check if it's a gallery card or a photo slot
+    let url = "";
+    const bgDiv = element.querySelector('.card-bg');
 
-    lightboxImg.src = url;
-    lightbox.classList.add('active');
+    if (bgDiv) {
+        // Extract URL from style
+        const bgStyle = bgDiv.style.backgroundImage;
+        if(bgStyle) {
+            url = bgStyle.slice(5, -2).replace(/['"]/g, "");
+        } else {
+            return; // No image
+        }
+    } else if (element.tagName === 'IMG') {
+        url = element.src;
+    }
+
+    if (url) {
+        lightboxImg.src = url;
+        lightbox.classList.add('active');
+    }
 }
 
 document.getElementById('lightbox-close').addEventListener('click', () => {
@@ -91,13 +106,19 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') lightbox.classList.remove('active');
 });
 
-// Accordion
+// Accordion (Critique)
 const logs = document.querySelectorAll('.log-entry');
 logs.forEach(log => {
     log.querySelector('.log-header').addEventListener('click', () => {
         log.classList.toggle('active');
     });
 });
+
+// Photography Toggle (Bio Page)
+function togglePhotoGallery() {
+    const gallery = document.getElementById('photo-gallery');
+    gallery.classList.toggle('open');
+}
 
 /*
    ==========================================================================

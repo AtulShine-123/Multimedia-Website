@@ -113,7 +113,7 @@
         </div>
     </section>
 
-    <!-- PAGE 1: BIO -->
+    <!-- PAGE 1: BIO (UPDATED WITH HOBBIES) -->
     <section class="page" id="page-1">
         <div class="page-content">
             <div class="section-header">
@@ -122,11 +122,12 @@
                 <div class="section-line"></div>
             </div>
 
+            <!-- ORIGINAL BIO GRID -->
             <div class="bio-grid">
                 <div class="bio-image-wrapper hover-trigger">
                     <div class="corner-bracket top-left"></div>
                     <div class="corner-bracket bottom-right"></div>
-                    <!-- CHANGED: me.jpg (CSS handles the flip) -->
+                    <!-- me.jpg (Flipped in CSS) -->
                     <img src="me.jpg" alt="Student Portrait" class="bio-img">
                     <div class="scan-bar"></div>
                 </div>
@@ -159,6 +160,136 @@
                     </div>
                 </div>
             </div>
+
+            <!-- NEW HOBBIES SECTION -->
+            <div class="hobbies-section">
+                <div class="section-header">
+                    <span class="section-num" style="font-size: 3rem; transform: translateY(-10px);">1.5</span>
+                    <h2 class="section-title" style="font-size: 2rem;">DATA_MODULES // HOBBIES</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="hobby-grid">
+
+                    <!-- BADMINTON -->
+                    <div class="hobby-card">
+                        <div class="hobby-visual">
+                            <img src="Badminton.jpg" alt="Badminton" class="hobby-img">
+                            <div class="hobby-overlay"></div>
+                        </div>
+                        <div class="hobby-content">
+                            <div class="hobby-header">
+                                <span class="tech-tag">SPORT</span>
+                                <h3>BADMINTON</h3>
+                            </div>
+                            <p class="hobby-desc">
+                                Member of the Intermediate–Advanced Bingtang Badminton Team. Despite playing for just over a year, I compete in Junior Regional tournaments, consistently matching the intensity and skill of veteran players through relentless dedication.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- TAE KWON DO -->
+                    <div class="hobby-card">
+                        <div class="hobby-visual">
+                            <img src="Teakwondo.jpg" alt="Tae Kwon Do" class="hobby-img">
+                            <div class="hobby-overlay"></div>
+                        </div>
+                        <div class="hobby-content">
+                            <div class="hobby-header">
+                                <span class="tech-tag">MARTIAL ARTS</span>
+                                <h3>TAE KWON DO</h3>
+                            </div>
+                            <p class="hobby-desc">
+                                2nd Dan Black Belt. I have earned 25+ Gold, 5 Silver, and 3 Bronze medals in state-level sparring. I served on the International Demonstration Team in South Korea (Kukkiwon) and later returned to my studio as a coach to mentor the next generation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ROBOTICS -->
+                    <div class="hobby-card">
+                        <div class="hobby-visual">
+                            <!-- CHANGED: Robotics.jpg -->
+                            <img src="Robotics.jpg" alt="Robotics" class="hobby-img">
+                            <div class="hobby-overlay"></div>
+                        </div>
+                        <div class="hobby-content">
+                            <div class="hobby-header">
+                                <span class="tech-tag">ENGINEERING</span>
+                                <h3>ROBOTICS</h3>
+                            </div>
+                            <p class="hobby-desc">
+                                A pursuit of the engineering mindset. I focus on the iterative process of building, experimenting, and problem-solving, applying technical rigor to bring mechanical concepts to life.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARS -->
+                    <div class="hobby-card">
+                        <div class="hobby-visual">
+                            <!-- CHANGED: Cars.jpg -->
+                            <img src="Cars.jpg" alt="Cars" class="hobby-img">
+                            <div class="hobby-overlay"></div>
+                        </div>
+                        <div class="hobby-content">
+                            <div class="hobby-header">
+                                <span class="tech-tag">AUTOMOTIVE</span>
+                                <h3>CARS</h3>
+                            </div>
+                            <p class="hobby-desc">
+                                I assisted in modifying a Mk4 Toyota Supra and actively participate in car culture. I was invited to speak at a show in Ohio alongside owners of a rare Mercedes-AMG Black Series (~50 units) and a ZR1 Corvette.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PHOTOGRAPHY DROPDOWN SECTION -->
+                <div class="photo-module">
+                    <button class="photo-toggle-btn hover-trigger" onclick="togglePhotoGallery()">
+                        <span class="btn-icon">📸</span>
+                        <span class="btn-text">INITIALIZE PHOTOGRAPHY MODULE</span>
+                        <span class="btn-arrow">▼</span>
+                    </button>
+
+                    <div class="photo-gallery" id="photo-gallery">
+                        <p class="gallery-intro">ARCHIVE // 10 CAPTURED MOMENTS</p>
+                        <div class="photo-grid-10">
+                            <!-- 10 Slots for Photos (Photo1.jpg to Photo10.jpg) -->
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo1.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo2.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo3.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo4.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo5.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo6.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo7.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo8.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo9.jpg');"></div>
+                            </div>
+                            <div class="photo-slot hover-trigger" onclick="openLightbox(this)">
+                                <div class="card-bg" style="background-image: url('Photo10.jpg');"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -181,7 +312,6 @@
                 <div class="art-card hover-trigger" onclick="openLightbox(this)">
                     <div class="card-border"></div>
                     <div class="card-inner">
-                        <!-- CHANGED: 991GT3.png -->
                         <div class="card-bg" style="background-image: url('991GT3.png')"></div>
                         <div class="card-overlay">
                             <span class="tech-tag">PHOTOSHOP</span>
@@ -195,7 +325,6 @@
                 <div class="art-card hover-trigger" onclick="openLightbox(this)">
                     <div class="card-border"></div>
                     <div class="card-inner">
-                        <!-- CHANGED: Owl.png -->
                         <div class="card-bg" style="background-image: url('Owl.png')"></div>
                         <div class="card-overlay">
                             <span class="tech-tag">ILLUSTRATOR</span>
@@ -209,7 +338,6 @@
                 <div class="art-card hover-trigger" onclick="openLightbox(this)">
                     <div class="card-border"></div>
                     <div class="card-inner">
-                        <!-- CHANGED: palm_trees.png -->
                         <div class="card-bg" style="background-image: url('palm_trees.png')"></div>
                         <div class="card-overlay">
                             <span class="tech-tag">PHOTOGRAPHY</span>
@@ -240,7 +368,6 @@
                         <span>[1080p]</span>
                     </div>
                     <div class="iframe-container">
-                        <!-- REPLACE YOUTUBE LINK -->
                         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&rel=0" title="Critique" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
