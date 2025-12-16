@@ -1,195 +1,168 @@
-/* =========================================
-   1. CUSTOM CURSOR
-   ========================================= */
+/*
+   ==========================================================================
+   1. ROUTER LOGIC (SPA ENGINE)
+   ==========================================================================
+*/
+const router = {
+    pages: document.querySelectorAll('.page'),
+    navItems: document.querySelectorAll('.nav-item'),
+    currentPage: 0,
+    isAnimating: false,
+
+    init() {
+        // Initial Page Load Animation
+        setTimeout(() => {
+            this.pages[0].classList.add('active');
+        }, 100);
+    },
+
+    navigate(targetIndex) {
+        if (this.isAnimating || targetIndex === this.currentPage) return;
+        this.isAnimating = true;
+
+        const oldPage = this.pages[this.currentPage];
+        const newPage = this.pages[targetIndex];
+
+        // Update Nav UI
+        this.navItems.forEach(item => item.classList.remove('active'));
+        this.navItems[targetIndex].classList.add('active');
+
+        // 1. Fade OUT old page
+        oldPage.classList.remove('active');
+
+        // 2. Wait for transition (matches CSS duration of 0.6s)
+        setTimeout(() => {
+            // 3. Fade IN new page
+            newPage.classList.add('active');
+            newPage.scrollTop = 0;
+
+            this.currentPage = targetIndex;
+            this.isAnimating = false;
+        }, 600);
+    }
+};
+
+router.init();
+
+/*
+   ==========================================================================
+   2. UI INTERACTIVITY
+   ==========================================================================
+*/
 const cursorDot = document.querySelector('.cursor-dot');
-const cursorCircle = document.querySelector('.cursor-circle');
-const hoverTargets = document.querySelectorAll('.hover-target, a');
+const cursorRing = document.querySelector('.cursor-ring');
 
 window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
+    cursorDot.style.left = `${e.clientX}px`;
+    cursorDot.style.top = `${e.clientY}px`;
 
-    // Dot follows instantly
-    if(cursorDot) {
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-    }
+    cursorRing.animate({
+        left: `${e.clientX}px`,
+        top: `${e.clientY}px`
+    }, { duration: 500, fill: "forwards" });
 
-    // Circle follows with lag
-    if(cursorCircle) {
-        cursorCircle.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    }
+    document.getElementById('coords').innerText =
+        `${e.clientX.toString().padStart(4, '0')}:${e.clientY.toString().padStart(4, '0')}`;
 });
 
-hoverTargets.forEach(target => {
-    target.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-    target.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+const hoverTargets = document.querySelectorAll('.hover-trigger, a, button');
+hoverTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
 
-/* =========================================
-   2. SCROLL REVEAL (Intersection Observer)
-   ========================================= */
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-
-            // Trigger Text Glitch if available
-            const glitchTarget = entry.target.querySelector('.glitch-target');
-            if(glitchTarget) scrambleText(glitchTarget);
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal-up, .hero').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(50px)';
-    el.style.transition = 'all 1s cubic-bezier(0.2, 1, 0.3, 1)';
-    observer.observe(el);
-});
-
-/* =========================================
-   3. TEXT SCRAMBLE EFFECT
-   ========================================= */
-function scrambleText(element) {
-    const originalText = element.getAttribute('data-text');
-    const chars = '!<>-_\\/[]{}—=+*^?#________';
-    let iteration = 0;
-
-    let interval = setInterval(() => {
-        element.innerText = originalText
-            .split("")
-            .map((letter, index) => {
-                if(index < iteration) return originalText[index];
-                return chars[Math.floor(Math.random() * chars.length)]
-            })
-            .join("");
-
-        if(iteration >= originalText.length) clearInterval(interval);
-        iteration += 1/3;
-    }, 30);
-}
-
-/* =========================================
-   4. ACCORDION LOGIC
-   ========================================= */
-document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-        const item = header.parentElement;
-        item.classList.toggle('active');
-    });
-});
-
-/* =========================================
-   5. 3D TILT EFFECT FOR CARDS
-   ========================================= */
-document.querySelectorAll('.art-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const inner = card.querySelector('.card-inner');
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Calculate rotation (max 15deg)
-        const xRotation = -1 * ((y - rect.height/2) / rect.height * 20);
-        const yRotation = (x - rect.width/2) / rect.width * 20;
-
-        inner.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        const inner = card.querySelector('.card-inner');
-        inner.style.transform = 'rotateX(0) rotateY(0)';
-    });
-});
-
-/* =========================================
-   6. LIGHTBOX FUNCTIONALITY
-   ========================================= */
+// Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
 
-function openLightbox(cardElement) {
-    // Get background image URL from clicked card
-    const bgDiv = cardElement.querySelector('.card-bg');
-    const bgStyle = window.getComputedStyle(bgDiv).backgroundImage;
+function openLightbox(element) {
+    const bg = element.querySelector('.card-bg').style.backgroundImage;
+    const url = bg.slice(5, -2).replace(/['"]/g, "");
 
-    // Extract URL (removes 'url("' and '")')
-    const imgUrl = bgStyle.slice(5, -2).replace(/['"]/g, "");
-
-    lightboxImg.src = imgUrl;
+    lightboxImg.src = url;
     lightbox.classList.add('active');
 }
 
-if(lightboxClose) {
-    lightboxClose.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-    });
-}
-
-// Close on escape key
-document.addEventListener('keydown', (e) => {
-    if(e.key === "Escape" && lightbox) lightbox.classList.remove('active');
+document.getElementById('lightbox-close').addEventListener('click', () => {
+    lightbox.classList.remove('active');
 });
 
-/* =========================================
-   7. CANVAS FLUID BACKGROUND
-   ========================================= */
-const canvas = document.getElementById('fluid-canvas');
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('active');
+});
 
-if(canvas) {
-    const ctx = canvas.getContext('2d');
-    let width, height;
+// Accordion
+const logs = document.querySelectorAll('.log-entry');
+logs.forEach(log => {
+    log.querySelector('.log-header').addEventListener('click', () => {
+        log.classList.toggle('active');
+    });
+});
 
-    // Resize
-    const resize = () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', resize);
-    resize();
+/*
+   ==========================================================================
+   3. BACKGROUND PARTICLES
+   ==========================================================================
+*/
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+let particles = [];
 
-    // Particles
-    const particles = [];
-    for(let i=0; i<50; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 2,
-            vy: (Math.random() - 0.5) * 2,
-            size: Math.random() * 200 + 50,
-            color: Math.random() > 0.5 ? '#00ffcc' : '#7000ff'
-        });
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        ctx.globalCompositeOperation = 'screen'; // Blending mode
-
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-
-            // Bounce
-            if(p.x < 0 || p.x > width) p.vx *= -1;
-            if(p.y < 0 || p.y > height) p.vy *= -1;
-
-            // Draw gradient blob
-            const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
-            g.addColorStop(0, p.color + '44'); // Hex + Alpha
-            g.addColorStop(1, 'transparent');
-
-            ctx.fillStyle = g;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
+function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
 }
+window.addEventListener('resize', resize);
+resize();
+
+class Particle {
+    constructor() { this.reset(); }
+    reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2;
+        this.alpha = Math.random() * 0.5;
+        this.life = Math.random() * 100;
+    }
+    update() {
+        this.x += this.vx; this.y += this.vy; this.life--;
+        if (this.life <= 0 || this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 255, 242, ${this.alpha})`;
+        ctx.fill();
+    }
+}
+
+for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+function animate() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 0.2;
+    ctx.strokeStyle = 'rgba(0, 255, 242, 0.1)';
+
+    for (let i = 0; i < particles.length; i++) {
+        let p1 = particles[i];
+        p1.update();
+        p1.draw();
+        for (let j = i; j < particles.length; j++) {
+            let p2 = particles[j];
+            let dx = p1.x - p2.x;
+            let dy = p1.y - p2.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(animate);
+}
+animate();
