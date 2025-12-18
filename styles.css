@@ -366,7 +366,8 @@ body {
 .cursor-ring {
     position: fixed; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
     pointer-events: none; /* CRITICAL FIX */
-    z-index: 9999; transition: transform 0.1s;
+    z-index: 9999;
+    /* NO TRANSITION HERE - JS handles it */
 }
 body.hovering .cursor-ring { transform: scale(1.5); border-color: var(--secondary); background: rgba(255,0,85,0.1); }
 

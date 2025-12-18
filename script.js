@@ -91,34 +91,64 @@ const router = {
 
 /*
    ==========================================================================
-   3. UI INTERACTIVITY
+   3. TRAILING CURSOR SYSTEM (PHYSICS-BASED)
    ==========================================================================
 */
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorRing = document.querySelector('.cursor-ring');
 
+// Mouse position (instant)
+let mouseX = 0;
+let mouseY = 0;
+
+// Ring position (delayed)
+let ringX = 0;
+let ringY = 0;
+
+// Lerp function for smooth trailing
+function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+}
+
+// Update mouse position
 window.addEventListener('mousemove', (e) => {
-    // Basic dot move
-    cursorDot.style.left = `${e.clientX}px`;
-    cursorDot.style.top = `${e.clientY}px`;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 
-    // Smooth follow for ring
-    cursorRing.animate({
-        left: `${e.clientX}px`,
-        top: `${e.clientY}px`
-    }, { duration: 500, fill: "forwards" });
-
+    // Update coordinates HUD
     document.getElementById('coords').innerText =
-        `${e.clientX.toString().padStart(4, '0')}:${e.clientY.toString().padStart(4, '0')}`;
+        `${mouseX.toString().padStart(4, '0')}:${mouseY.toString().padStart(4, '0')}`;
 });
 
+// Animation loop for cursor ring (trails behind)
+function animateCursor() {
+    // Instant dot position
+    cursorDot.style.left = `${mouseX}px`;
+    cursorDot.style.top = `${mouseY}px`;
+
+    // Smooth ring position (trails with 0.12 factor)
+    ringX = lerp(ringX, mouseX, 0.12);
+    ringY = lerp(ringY, mouseY, 0.12);
+
+    cursorRing.style.left = `${ringX}px`;
+    cursorRing.style.top = `${ringY}px`;
+
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Hover States
 const hoverTargets = document.querySelectorAll('.hover-trigger, a, button');
 hoverTargets.forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
 
-// Lightbox
+/*
+   ==========================================================================
+   4. LIGHTBOX
+   ==========================================================================
+*/
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 
@@ -146,7 +176,11 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') lightbox.classList.remove('active');
 });
 
-// Accordion
+/*
+   ==========================================================================
+   5. ACCORDION
+   ==========================================================================
+*/
 const logs = document.querySelectorAll('.log-entry');
 logs.forEach(log => {
     log.querySelector('.log-header').addEventListener('click', () => {
@@ -154,7 +188,11 @@ logs.forEach(log => {
     });
 });
 
-// Photography Module Toggle & Auto-Scroll
+/*
+   ==========================================================================
+   6. PHOTOGRAPHY MODULE TOGGLE & AUTO-SCROLL
+   ==========================================================================
+*/
 const photoTrigger = document.getElementById('photo-trigger');
 const photoGrid = document.getElementById('photo-grid');
 
@@ -174,7 +212,7 @@ if(photoTrigger && photoGrid) {
 
 /*
    ==========================================================================
-   4. BACKGROUND PARTICLES (RED/BLACK THEME)
+   7. BACKGROUND PARTICLES (RED/BLACK THEME)
    ==========================================================================
 */
 const canvas = document.getElementById('bg-canvas');
