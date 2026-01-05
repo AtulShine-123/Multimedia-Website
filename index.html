@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEM // A. SHINE</title>
+    <title>FTC Poseidon</title>
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <body>
 
 <!-- VISUAL FX -->
-<div class="background-pulse"></div> <!-- Dynamic Red/Black Pulse -->
+<div class="background-pulse"></div>
 <div class="scanlines"></div>
 <div class="vignette"></div>
 <div class="noise-layer"></div>
@@ -30,15 +30,15 @@
 
 <!-- HUD ELEMENTS -->
 <div class="hud-top-left">
-    <span class="hud-text">SYS.VER.2025</span>
+    <span class="hud-text">POSEIDON // FTC-TEAM</span>
     <div class="hud-line"></div>
 </div>
 <div class="hud-top-right">
-    <span class="hud-text">EVHS // FALL_FINAL</span>
+    <span class="hud-text">FIELD READY // 2025-26</span>
     <div class="hud-square"></div>
 </div>
 <div class="hud-bottom-left">
-    <span class="hud-text">STATUS: ONLINE</span>
+    <span class="hud-text">STATUS: ACTIVE</span>
 </div>
 <div class="hud-bottom-right">
     <span class="hud-text">COORDS: <span id="coords">00:00</span></span>
@@ -62,28 +62,33 @@
 <!-- NAVIGATION BAR -->
 <nav class="main-nav">
     <div class="nav-brand hover-trigger" onclick="router.navigate(0)">
-        <span class="brand-glitch" data-text="A.SHINE">A.SHINE</span>
+        <span class="brand-glitch" data-text="FTC POSEIDON">FTC POSEIDON</span>
     </div>
 
     <div class="nav-menu">
         <div class="nav-item active" onclick="router.navigate(0)">
             <span class="nav-number">00</span>
-            <span class="nav-label">HOME</span>
+            <span class="nav-label">ABOUT US</span>
             <div class="nav-indicator"></div>
         </div>
         <div class="nav-item" onclick="router.navigate(1)">
             <span class="nav-number">01</span>
-            <span class="nav-label">BIO</span>
+            <span class="nav-label">PROGRAMMING</span>
             <div class="nav-indicator"></div>
         </div>
         <div class="nav-item" onclick="router.navigate(2)">
             <span class="nav-number">02</span>
-            <span class="nav-label">WORK</span>
+            <span class="nav-label">MECHANICAL</span>
             <div class="nav-indicator"></div>
         </div>
         <div class="nav-item" onclick="router.navigate(3)">
             <span class="nav-number">03</span>
-            <span class="nav-label">CRITIQUE</span>
+            <span class="nav-label">OUTREACH</span>
+            <div class="nav-indicator"></div>
+        </div>
+        <div class="nav-item" onclick="router.navigate(4)">
+            <span class="nav-number">04</span>
+            <span class="nav-label">STATS</span>
             <div class="nav-indicator"></div>
         </div>
     </div>
@@ -92,281 +97,189 @@
 <!-- MAIN PAGE CONTAINER -->
 <main id="app-container">
 
-    <!-- PAGE 0: HOME -->
+    <!-- PAGE 0: HOME / ABOUT US -->
     <section class="page active" id="page-0">
         <div class="content-center">
             <div class="glitch-wrapper">
-                <!-- SCRAMBLE TARGET -->
-                <h1 class="hero-title" id="scramble-title" data-value="CREATIVE_VISION"></h1>
+                <h1 class="hero-title" id="scramble-title" data-value="FTC_POSEIDON"></h1>
             </div>
 
             <div class="hero-subtitle-container">
                 <div class="dec-line"></div>
-                <span class="hero-subtitle">MULTIMEDIA I // FALL SEMESTER 2025</span>
+                <span class="hero-subtitle">FTC ROBOTICS // TEAM POSEIDON</span>
                 <div class="dec-line"></div>
             </div>
 
             <div class="terminal-text">
-                <p>> INITIALIZING PORTFOLIO PROTOCOL...</p>
-                <p>> ASSETS LOADED: 100%</p>
-                <p>> WELCOME USER.</p>
+                <p>> INITIALIZING COMPETITION SYSTEM...</p>
+                <p>> DRIVETRAIN + CODEBASE: ONLINE</p>
+                <p>> READY FOR NEXT MATCH.</p>
             </div>
 
-            <!-- BUTTON UPDATED: GOES TO BIO (1) -->
             <button class="cta-btn hover-trigger" onclick="router.navigate(1)">
-                LEARN MORE ABOUT ME
+                EXPLORE PROGRAMMING
             </button>
         </div>
     </section>
 
-    <!-- PAGE 1: BIO & HOBBIES -->
+    <!-- PAGE 1: PROGRAMMING -->
     <section class="page" id="page-1">
         <div class="page-content">
             <div class="section-header">
                 <span class="section-num">01</span>
-                <h2 class="section-title">PROFILE_DATA</h2>
+                <h2 class="section-title">PROGRAMMING</h2>
                 <div class="section-line"></div>
             </div>
 
-            <!-- MAIN BIO -->
             <div class="bio-grid">
                 <div class="bio-image-wrapper hover-trigger">
                     <div class="corner-bracket top-left"></div>
                     <div class="corner-bracket bottom-right"></div>
-                    <!-- NOTE: CSS rotates this 180deg -->
-                    <img src="me.jpg" alt="Student Portrait" class="bio-img">
+                    <img src="Robotics.jpg" alt="FTC robot closeup" class="bio-img">
                     <div class="scan-bar"></div>
                 </div>
 
                 <div class="bio-text-panel">
                     <div class="panel-header">
                         <span class="panel-icon">◈</span>
-                        <h3>OPERATOR BIO</h3>
+                        <h3>CONTROL STACK</h3>
                     </div>
                     <p class="bio-para">
-                        I’m a student at EVHS with a strong interest in computer science and engineering, and I plan to pursue CS at the collegiate level. I’m drawn to building things from the ground up, whether that’s systems, projects, or organizations, and I value understanding how things work rather than just using them.
+                        Autonomous and tele-op code share a common pipeline focused on reliability: sensor fusion for odometry, predictive trajectories, and rapid fail-safes for drivers. Every commit is stress-tested on a practice bot before competition deployment.
                     </p>
                     <p class="bio-para">
-                        I’m especially interested in problem-solving through logic, structure, and iteration. I tend to approach challenges methodically, focusing on efficiency, clarity, and long-term improvement. This mindset carries across both my technical work and leadership roles, where I prioritize responsibility, consistency, and follow-through.
-                    </p>
-                    <p class="bio-para">
-                        This site documents my academic and creative work from the Fall 2025 semester, reflecting my growth in technical thinking, project execution, and presentation.
+                        We prioritize readable, modular subsystems so rookies can extend features without fear. Logging, simulation notes, and tuning scripts live beside the robot code to keep iteration fast between matches.
                     </p>
 
                     <div class="stats-grid">
                         <div class="stat-box">
-                            <span class="stat-label">CLASS</span>
-                            <span class="stat-value">MM I</span>
+                            <span class="stat-label">LANGUAGE</span>
+                            <span class="stat-value">JAVA</span>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-label">YEAR</span>
-                            <span class="stat-value">2025</span>
+                            <span class="stat-label">SDK</span>
+                            <span class="stat-value">FTC</span>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-label">ROLE</span>
-                            <span class="stat-value">STUDENT</span>
+                            <span class="stat-label">CYCLE</span>
+                            <span class="stat-value">AUTO READY</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- HOBBIES SECTION -->
             <div class="hobbies-wrapper">
                 <div class="section-header small">
-                    <h2 class="section-title small">DATA_MODULES // HOBBIES</h2>
+                    <h2 class="section-title small">PLAYBOOK // CODE MODULES</h2>
                     <div class="section-line"></div>
                 </div>
 
-                <!-- 1. BADMINTON -->
                 <div class="hobby-card">
                     <div class="hobby-visual">
-                        <img src="Badminton.jpg" alt="Badminton" class="hobby-img">
+                        <div class="hobby-img" style="background: linear-gradient(135deg, #b9e3ff, #e4f4ff);"></div>
                     </div>
                     <div class="hobby-content">
-                        <h3>BADMINTON PROTOCOL</h3>
-                        <p>I am a competitive member of the Intermediate–Advanced Bingtang Badminton Team. Despite only playing for just over a year, I have rapidly developed my skills to match veteran players, participating in Junior Regional tournaments with a focus on aggressive growth and tactical precision.</p>
+                        <h3>AUTONOMOUS PATHING</h3>
+                        <p>Spline-based routes with adjustable waypoints, tuned for rapid scoring and smooth intake. IMU + encoder fusion keeps the bot aligned even under drift.</p>
                     </div>
                 </div>
 
-                <!-- 2. TAE KWON DO -->
                 <div class="hobby-card reverse">
                     <div class="hobby-visual">
-                        <img src="Teakwondo.jpg" alt="Tae Kwon Do" class="hobby-img">
+                        <div class="hobby-img" style="background: linear-gradient(135deg, #c8e7ff, #b0d3ff);"></div>
                     </div>
                     <div class="hobby-content">
-                        <h3>TAE KWON DO</h3>
-                        <p>As a 2nd Dan Black Belt, my discipline is evidenced by 25+ Gold, 5 Silver, and 3 Bronze medals. I have sparred at state-level events and performed in South Korea with my studio's International Demonstration Team (organized by Kukkiwon). I now serve as a coach, passing on these values.</p>
+                        <h3>DRIVER UTILITIES</h3>
+                        <p>Dynamic speed scaling, auto-level hang assists, and instant-recover macros give drivers confidence when matches get chaotic.</p>
                     </div>
                 </div>
-
-                <!-- 3. ROBOTICS -->
-                <div class="hobby-card">
-                    <div class="hobby-visual">
-                        <img src="Robotics.jpg" alt="Robotics" class="hobby-img">
-                    </div>
-                    <div class="hobby-content">
-                        <h3>ROBOTICS ENGINEERING</h3>
-                        <p>Robotics provides the framework for my problem-solving mindset. I focus on the engineering lifecycle—building, experimenting, and refining mechanical systems. It is the physical application of the logic I use in coding and design.</p>
-                    </div>
-                </div>
-
-                <!-- 4. CARS -->
-                <div class="hobby-card reverse">
-                    <div class="hobby-visual">
-                        <!-- UPDATED to Car.jpg -->
-                        <img src="Car.jpg" alt="Cars" class="hobby-img">
-                    </div>
-                    <div class="hobby-content">
-                        <h3>AUTOMOTIVE DESIGN</h3>
-                        <p>My passion extends to automotive culture. I assisted in modifying a Mk4 Toyota Supra and regularly attend exhibitions. I had the honor of speaking at an Ohio showcase alongside owners of a rare Mercedes-AMG Black Series (~50 units) and a Chevrolet Corvette ZR1.</p>
-                    </div>
-                </div>
-
-                <!-- 5. PHOTOGRAPHY (EXPANDABLE) -->
-                <div class="photo-module hover-trigger" id="photo-trigger">
-                    <div class="module-header">
-                        <span class="module-icon">📸</span>
-                        <h3>PHOTOGRAPHY ARCHIVE // CLICK TO EXPAND</h3>
-                        <div class="module-arrow">▼</div>
-                    </div>
-                </div>
-
-                <!-- HIDDEN PHOTO GRID -->
-                <div class="photo-grid-container" id="photo-grid">
-                    <div class="photo-grid">
-                        <!-- 10 SLOTS -->
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo1.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo2.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo3.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo4.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo5.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo6.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo7.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo8.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo9.jpg')"></div>
-                        </div>
-                        <div class="photo-item hover-trigger" onclick="openLightbox(this)">
-                            <div class="card-bg" style="background-image: url('Photo10.jpg')"></div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- PAGE 2: MULTIMEDIA (GALLERY) -->
+    <!-- PAGE 2: MECHANICAL -->
     <section class="page" id="page-2">
         <div class="page-content">
             <div class="section-header">
                 <span class="section-num">02</span>
-                <h2 class="section-title">ARTIFACT_DB</h2>
+                <h2 class="section-title">MECHANICAL</h2>
                 <div class="section-line"></div>
             </div>
 
             <p class="intro-text">
-                Multimedia is the amalgamation of diverse content forms. Below is a curated database of raster and vector graphics generated this semester.
+                Light, serviceable assemblies keep match turnaround low. Every joint is accessible, and critical mounts are reinforced for quick swaps.
             </p>
 
             <div class="gallery-container">
-
-                <!-- ARTWORK 1 -->
-                <div class="art-card hover-trigger" onclick="openLightbox(this)">
+                <div class="art-card hover-trigger">
                     <div class="card-border"></div>
                     <div class="card-inner">
-                        <div class="card-bg" style="background-image: url('991GT3.png')"></div>
+                        <div class="card-bg" style="background-image: linear-gradient(135deg, #b8d8ff, #d6ecff);"></div>
                         <div class="card-overlay">
-                            <span class="tech-tag">ILLUSTRATOR</span>
-                            <h3>PORSCHE 991 GT3 R</h3>
-                            <p>A vibrant vector illustration of a Porsche GT3RS featuring bold outlines and a colorful, high-contrast background to emphasize the vehicle's sporty energy.</p>
+                            <span class="tech-tag">DRIVETRAIN</span>
+                            <h3>MECANUM MK-III</h3>
+                            <p>Low-profile frame with centered battery, tuned for consistent strafes and stable scoring.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- ARTWORK 2 -->
-                <div class="art-card hover-trigger" onclick="openLightbox(this)">
+                <div class="art-card hover-trigger">
                     <div class="card-border"></div>
                     <div class="card-inner">
-                        <div class="card-bg" style="background-image: url('Owl.png')"></div>
+                        <div class="card-bg" style="background-image: linear-gradient(135deg, #d4f1ff, #a9d2ff);"></div>
                         <div class="card-overlay">
-                            <span class="tech-tag">VECTOR</span>
-                            <h3>THE OWL</h3>
-                            <p>A stylized digital drawing of an owl perched against a night sky, utilizing sharp geometric shapes and clean lines to create a modern, graphic character design.</p>
+                            <span class="tech-tag">INTAKE</span>
+                            <h3>DUAL-STAGE</h3>
+                            <p>Compression-tuned rollers with quick-release belts for rapid maintenance between matches.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- ARTWORK 3 -->
-                <div class="art-card hover-trigger" onclick="openLightbox(this)">
+                <div class="art-card hover-trigger">
                     <div class="card-border"></div>
                     <div class="card-inner">
-                        <div class="card-bg" style="background-image: url('palm_trees.png')"></div>
+                        <div class="card-bg" style="background-image: linear-gradient(135deg, #b4e1ff, #e5f4ff);"></div>
                         <div class="card-overlay">
-                            <span class="tech-tag">PHOTOSHOP</span>
-                            <h3>RETRO SUNSET</h3>
-                            <p>A monochromatic Synthwave-inspired landscape that uses perspective grids and silhouette palm trees to create a nostalgic, retro-futuristic atmosphere.</p>
+                            <span class="tech-tag">ENDGAME</span>
+                            <h3>CLIMB SYSTEM</h3>
+                            <p>Telescoping arm with passive alignment hooks to lock onto the rig under load.</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- PAGE 3: CRITIQUE -->
+    <!-- PAGE 3: OUTREACH -->
     <section class="page" id="page-3">
         <div class="page-content">
             <div class="section-header">
                 <span class="section-num">03</span>
-                <h2 class="section-title">DEBRIEF_LOG</h2>
+                <h2 class="section-title">OUTREACH</h2>
                 <div class="section-line"></div>
             </div>
 
             <div class="critique-layout">
-                <!-- VIDEO CONTAINER -->
                 <div class="video-frame hover-trigger">
                     <div class="video-overlay-ui">
-                        <span>REC ●</span>
-                        <span>[1080p]</span>
+                        <span>CONNECT</span>
+                        <span>[COMMUNITY]</span>
                     </div>
                     <div class="iframe-container">
-                        <iframe src="https://www.youtube.com/embed/R3iD_owP6rg?controls=0&modestbranding=1&rel=0" title="Critique" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/N3E7fUph5vQ?controls=0&modestbranding=1&rel=0" title="FTC Outreach" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
 
-                <!-- Q&A ACCORDION -->
                 <div class="data-logs">
-
                     <div class="log-entry hover-trigger">
                         <div class="log-header">
                             <span class="log-id">LOG_01</span>
-                            <span class="log-title">WHY THESE PIECES?</span>
+                            <span class="log-title">STEM CLINICS</span>
                             <span class="log-toggle">+</span>
                         </div>
                         <div class="log-body">
                             <div class="log-content">
-                                <strong>Black and White Synthwave:</strong> I chose this piece because I really wanted to experiment with negative space and high contrast. The Synthwave aesthetic is usually very colorful, so stripping it down to just black and white forced me to rely entirely on line and shape to make the image recognizable. It represents my interest in retro-futurism but with a minimalist twist.<br><br>
-
-                                <strong>The Owl:</strong> This vector illustration was chosen because it shows my progress with creating organic forms using digital tools. I wanted to focus on clean lines and distinct blocks of color rather than blending. It stands out in my portfolio because it feels like a professional logo or sticker design, which is a style I enjoy creating.<br><br>
-
-                                <strong>The Porsche GT3 RS:</strong> I selected this car illustration because it was my most ambitious project regarding detail and color. I love automotive design, and I wanted to capture the aggressive shape of the GT3 RS. It contrasts well with my other two pieces because it uses a vibrant, multi-colored background and complex mechanical lines compared to the simpler nature scenes.
+                                Weekly coding labs for middle school teams with shared starter code and troubleshooting guides.
                             </div>
                         </div>
                     </div>
@@ -374,16 +287,12 @@
                     <div class="log-entry hover-trigger">
                         <div class="log-header">
                             <span class="log-id">LOG_02</span>
-                            <span class="log-title">CREATIVE PROCESS?</span>
+                            <span class="log-title">SHOWCASE DEMOS</span>
                             <span class="log-toggle">+</span>
                         </div>
                         <div class="log-body">
                             <div class="log-content">
-                                <strong>Black and White Synthwave:</strong> My favorite part of creating this was working on the perspective grid. Getting the lines to converge towards the "sun" created a strong sense of depth and movement. It was satisfying to see a flat image suddenly look like a 3D landscape just by manipulating the lines.<br><br>
-
-                                <strong>The Owl:</strong> The best part of this process was designing the shadow and highlight shapes on the feathers. Instead of using a gradient tool, I had to manually draw the jagged shapes to imply texture. It was fun figuring out exactly where the light source (the moon) was hitting the bird and how that changed the value of the brown feathers.<br><br>
-
-                                <strong>The Porsche GT3 RS:</strong> I really enjoyed coloring this piece, specifically the background stripes. Matching the rainbow background to the race car livery was fun because it made the whole image pop. I also liked drawing the wheels; even though they were difficult, getting the geometric pattern of the spokes right felt like solving a puzzle.
+                                Field demonstrations at local STEM nights to recruit future drivers, builders, and mentors.
                             </div>
                         </div>
                     </div>
@@ -391,20 +300,57 @@
                     <div class="log-entry hover-trigger">
                         <div class="log-header">
                             <span class="log-id">LOG_03</span>
-                            <span class="log-title">FUTURE IMPROVEMENTS?</span>
+                            <span class="log-title">SERVICE HOURS</span>
                             <span class="log-toggle">+</span>
                         </div>
                         <div class="log-body">
                             <div class="log-content">
-                                <strong>Black and White Synthwave:</strong> If I were to improve this, I would add more texture to the palm trees. Right now, they are solid white silhouettes, but adding some small black cuts or lines inside the leaves would give them more definition and make them look less flat against the grid.<br><br>
-
-                                <strong>The Owl:</strong> I would change the background to add more atmosphere. While the blue box works as a frame, adding a subtle gradient or maybe some clouds behind the moon would create more emphasis on the owl. I also think the claws on the branch could be defined better to make the bird look like it's gripping the wood tighter.<br><br>
-
-                                <strong>The Porsche GT3 RS:</strong> I would work on the value and shading on the car's body. The colors are accurate, but the car looks a little flat. Adding darker shadows underneath the spoiler and lighter highlights on the hood would give the car more form and make it look 3D, rather than just a sticker on a background. I’d also clean up the "GT3 RS" text in the back to make the lines smoother.
+                                Volunteer repair booths and battery safety checks for rookie teams during league meets.
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- PAGE 4: STATS -->
+    <section class="page" id="page-4">
+        <div class="page-content">
+            <div class="section-header">
+                <span class="section-num">04</span>
+                <h2 class="section-title">STATS</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <p class="intro-text">
+                Quick metrics for the current season. Data refreshes after each event cycle.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">AUTO PATHS</span>
+                    <span class="stat-value">6</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">CYCLE AVG</span>
+                    <span class="stat-value">7.2</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">HANG RATE</span>
+                    <span class="stat-value">92%</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">OUTREACH HRS</span>
+                    <span class="stat-value">120+</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">MEMBERS</span>
+                    <span class="stat-value">18</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">SEASON</span>
+                    <span class="stat-value">2025-26</span>
                 </div>
             </div>
         </div>
