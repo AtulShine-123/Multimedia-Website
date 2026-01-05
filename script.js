@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*
    ==========================================================================
-   2. ROUTER LOGIC (SPA ENGINE) WITH RED STREAK
+   2. ROUTER LOGIC (SPA ENGINE) WITH BLUE STREAK
    ==========================================================================
 */
 const router = {

@@ -74,7 +74,7 @@ body {
     z-index: -1;
 }
 
-/* RED STREAK ANIMATION */
+/* BLUE STREAK ANIMATION */
 #warp-streak {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: linear-gradient(90deg, transparent 0%, rgba(41, 182, 246, 0.35) 50%, transparent 100%);
@@ -207,6 +207,13 @@ body {
     text-transform: uppercase; transition: 0.3s;
 }
 .cta-btn:hover { background: var(--primary); color: #f9fbff; box-shadow: 0 0 30px var(--primary); }
+
+/* --- UTILITY GRADIENTS --- */
+.gradient-blue-1 { background: linear-gradient(135deg, #b9e3ff, #e4f4ff); }
+.gradient-blue-2 { background: linear-gradient(135deg, #c8e7ff, #b0d3ff); }
+.gradient-blue-3 { background: linear-gradient(135deg, #b8d8ff, #d6ecff); }
+.gradient-blue-4 { background: linear-gradient(135deg, #d4f1ff, #a9d2ff); }
+.gradient-blue-5 { background: linear-gradient(135deg, #b4e1ff, #e5f4ff); }
 
 /* --- HEADERS --- */
 .section-header { margin-bottom: 4rem; position: relative; }
