@@ -6,7 +6,7 @@
 function scrambleText(element) {
     if (!element) return;
     const finalState = element.getAttribute('data-value');
-    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/A.SHINE';
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/POSEIDON';
     let iterations = 0;
 
     clearInterval(element.interval);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*
    ==========================================================================
-   2. ROUTER LOGIC (SPA ENGINE) WITH RED STREAK
+   2. ROUTER LOGIC (SPA ENGINE) WITH BLUE STREAK
    ==========================================================================
 */
 const router = {
@@ -237,8 +237,8 @@ class Particle {
         this.size = Math.random() * 2.5;
         this.alpha = Math.random() * 0.5;
         this.life = Math.random() * 100;
-        // Color variation: Red or Grey
-        this.color = Math.random() > 0.8 ? '255, 0, 85' : '100, 100, 100';
+        // Color variation: Blue tones
+        this.color = Math.random() > 0.6 ? '13, 110, 253' : '41, 182, 246';
     }
     update() {
         this.x += this.vx; this.y += this.vy; this.life--;
