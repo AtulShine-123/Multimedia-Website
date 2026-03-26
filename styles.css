@@ -489,3 +489,32 @@ body.hovering .cursor-ring { transform: scale(1.5); border-color: var(--secondar
         transform: translate(-50%, 0);
     }
 }
+
+/* =========================
+   QUICK FIX: MOBILE NAV DROPDOWN ENDING
+   ========================= */
+@media (max-width: 900px) {
+    .nav-dropdown .dropdown-menu {
+        left: 50%;
+        transform: translate(-50%, 8px);
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+        transform: translate(-50%, 0);
+    }
+}
+
+/* =========================
+   FLAGS CARD WHITE BACKGROUND
+   ========================= */
+.flags-card .card-inner {
+    background: #fff;
+}
+
+.flags-card .card-bg {
+    background-color: #fff;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
