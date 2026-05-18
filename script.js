@@ -77,6 +77,9 @@ const router = {
         if (targetIndex === 2 || targetIndex === 4) {
             const workTab = document.querySelector('.nav-dropdown');
             if (workTab) workTab.classList.add('active');
+        } else if (targetIndex === 5) {
+            const finalTab = document.querySelector('.final-tab');
+            if (finalTab) finalTab.classList.add('active');
         } else if(this.navItems[targetIndex]) {
             this.navItems[targetIndex].classList.add('active');
         }
